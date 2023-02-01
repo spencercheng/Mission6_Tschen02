@@ -35,6 +35,9 @@ namespace Mission6_Tschen02.Controllers
         [HttpPost]
         public IActionResult MovieForm(ApplicationResponse ar)
         {
+            if (ModelState.IsValid) {
+                return View("Confirmatiion");
+            }
             return View();
         }
         public IActionResult Privacy()
