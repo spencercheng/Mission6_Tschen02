@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Movie Form";
+}
+
+@model Mission6_Tschen02.Models.ApplicationResponse
+
+<h1 class="text-center"> Fill Out Movie Form </h1>
+
+<div class="line">
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="Category" class="form-label">Category </label>
+            <input asp-for="Category" type="text" class="form-control" id="Category">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Title</label>
+            <input asp-for="Title" type="text" class="form-control" id="GroupProject">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Year" class="form-label">Year</label>
+            <input asp-for="Year" class="form-control" id="Quizzes">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Director" class="form-label">Director</label>
+            <input asp-for="Director" type="text" class="form-control" id="Midterm">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Rating" class="form-label">Rating</label>
+            <select asp-for="Rating" class="form-control">
+                <option value="G"> G </option>
+                <option value="PG"> PG </option>
+                <option value="PG-13"> Pg-13 </option>
+                <option value="R"> R </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Edited" class="form-label">Edited</label>
+            <select asp-for="Edited" class="form-control">
+                <option value="true"> Yes </option>
+                <option value="false"> No</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LentTo" class="form-label">LentTo</label>
+            <input asp-for="LentTo" type="text" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Notes" class="form-label">Notes</label>
+            <input asp-for="Notes" type="text" class="form-control">
+        </div>
+
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary mb-3" id="send" value="Submit Movie">
+        </div>
+
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>
