@@ -12,10 +12,11 @@ namespace Mission6_Tschen02.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private DateApplicationContext blahContext { get; set; }
+        public HomeController(ILogger<HomeController> logger, DateApplicationContext someName)
         {
             _logger = logger;
+            blahContext = someName;
         }
 
         public IActionResult Index()
@@ -36,6 +37,8 @@ namespace Mission6_Tschen02.Controllers
         public IActionResult MovieForm(ApplicationResponse ar)
         {
             if (ModelState.IsValid) {
+                blahContext.Add(ar);
+                blahContext.SaveChanges();
                 return View("Confirmatiion");
             }
             return View();
