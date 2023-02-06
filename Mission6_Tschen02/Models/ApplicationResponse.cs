@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Mission6_Tschen02.Models
 {
     public class ApplicationResponse
-    {   [Key]
+        
+    {   
+        
+        // validation
+        [Key]
         [Required]
         public int ApplicationId { get; set; }
         [Required]
