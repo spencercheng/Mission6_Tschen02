@@ -15,7 +15,13 @@
     <form method="post">
         <div class="mb-3">
             <label asp-for="Category" class="form-label">Category </label>
-            <input asp-for="Category" type="text" class="form-control" id="Category">
+            <select asp-for="CategoryId" class="form-control">
+                <option value="">Select a Category</option>
+                @foreach (Category m in ViewBag.Categories)
+            {
+                    <option value="@m.CategoryId">@m.CategoryName</option>
+            }
+            </select>
         </div>
         <div class="mb-3">
             <label asp-for="Title" class="form-label">Title</label>

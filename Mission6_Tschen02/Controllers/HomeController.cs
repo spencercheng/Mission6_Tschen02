@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mission6_Tschen02.Models;
 using System;
@@ -31,6 +32,7 @@ namespace Mission6_Tschen02.Controllers
         [HttpGet]
         public IActionResult MovieForm()
         {
+            ViewBag.Categories = blahContext.Categories.ToList();
             return View();
         }
         [HttpPost]
@@ -39,13 +41,57 @@ namespace Mission6_Tschen02.Controllers
             if (ModelState.IsValid) {
                 blahContext.Add(ar);
                 blahContext.SaveChanges();
-                return View("Confirmatiion");
+                return View("Confirmatiion",ar);
             }
-            return View();
+            else
+            {
+                ViewBag.Categories = blahContext.Categories.ToList();
+                return View(ar);
+            }
+          
+        }
+        [HttpGet]
+        public IActionResult Movies()
+        {   
+             
+            var applications = blahContext.Responses.Include(x=>x.Category)
+                .ToList();
+            return View(applications);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int applicationid)
+        {
+            ViewBag.Categories = blahContext.Categories.ToList();
+            var application = blahContext.Responses.Single(x => x.ApplicationId == applicationid);
+            return View("MovieForm", application);
+        }
+        [HttpPost]
+        //Edit the MovieList
+        public IActionResult Edit(ApplicationResponse blah)
+        {
+            blahContext.Update(blah);
+            blahContext.SaveChanges();
+            return RedirectToAction("Movies");
+        }
+        [HttpGet]
+        public IActionResult Delete (int applicationid)
+        {
+            var application = blahContext.Responses.Single(x => x.ApplicationId == applicationid);
+            return View(application);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(ApplicationResponse ar)
+        {
+            blahContext.Responses.Remove(ar);
+            blahContext.SaveChanges();
+            return RedirectToAction("Movies");
         }
         public IActionResult Privacy()
         {
-            return View();
+           
+            return View( );
         }
 
 

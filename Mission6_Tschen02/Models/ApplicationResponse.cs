@@ -14,9 +14,8 @@ namespace Mission6_Tschen02.Models
         [Key]
         [Required]
         public int ApplicationId { get; set; }
-        [Required]
-        public string Category { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Hey How we gonna know what movie it is?")]
         public string Title { get; set; }
         [Required]
         public int Year { get; set; }
@@ -29,5 +28,9 @@ namespace Mission6_Tschen02.Models
         [StringLength(25)]
         public string Notes { get; set; }
 
+        //Build Foreign Key Relationship
+        [Required]
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }
